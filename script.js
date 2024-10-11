@@ -39,7 +39,7 @@ const form = document.getElementById('registrationForm');
  }
  function isEmail(email) {
      return !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/..test(email);
-     
+ }
 const form = document.getElementById('form-feedback');
 
     feedbackDiv.addEventListener('Register', function(event) {
