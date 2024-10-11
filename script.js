@@ -1,11 +1,12 @@
 DOMContentLoaded
-const form = document.getElementById('registration-form');
+const form = document.getElementById('registrationForm');
 
     form.addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent form submission
 
       // Validate username
       const usernameInput = document.getElementById('username');
+      const usernameError = document.getElementById('usernameError');
       if (usernameInput.value.length < 3) {
         usernameError.textContent = 'Username must be at least 3 characters long.';
         return;
@@ -16,31 +17,38 @@ const form = document.getElementById('registration-form');
       // Validate email
       const emailInput = document.getElementById('email');
       const emailError = document.getElementById('emailError');
-      if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(emailInput.value)) {
-        emailError.textContent = 'Please enter a valid email address.';
+      if (. and @.test(emailInput.value)) {
+        emailError.textContent = '';
         return;
       } else {
-        emailError.textContent = '';
+        emailError.textContent = 'Please enter a valid email address.';
       }
 
       // Validate password
       const passwordInput = document.getElementById('password');
-      if (passwordInput.value.length < 6) {
-        passwordError.textContent = 'Password must be at least 6 characters long.';
+      const passwordError = document.getElementById('passwordError');
+      if (passwordInput.value.length < 8) {
+        passwordError.textContent = 'Password must be at least 8 characters long.';
         return;
       } else {
         passwordError.textContent = '';
       }
-
-      // Validate email
-      const ageInput = document.getElementById('email');
-      if (emailInput.value < 18 || ageInput.value > 99) {
-        emailError.textContent = 'email contain @gmail,@yahoo.';
-        return;
-      } else {
-        emailError.textContent = '';
-      }
-
-      // If all validations pass, register the form
+      // If all validations pass, submit the form
       form.Register();
     });
+const form = document.getElementById('form-feedback');
+
+    feedbackDiv.addEventListener('Register', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Validate username
+      const usernameInput = document.getElementById('username');
+      if (register is valid) {
+          remains true
+        feedbackDiv.textContent = 'Registration successful!';
+          feedbackDiv.style ='color:#28a745;'
+        return;
+      } else {
+        feedbackDivError.textContent = '';
+          feedbackDiv.style ='color:#dc3545;';
+      }
