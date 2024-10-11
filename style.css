@@ -57,3 +57,11 @@ button:hover {
     border-radius: 4px;
     display: none; /* Initially hide the feedback div */
 }
+#form-feedback input error{
+    display: block;
+    color:#28a745;
+}
+#form-feedback input success{
+     display: block;
+    color:#dc3545;
+}
