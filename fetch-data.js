@@ -1,17 +1,4 @@
-async function fetchUserData() {
-    try {
-        const result = await new Promise((resolve) => {
-            setTimeout(() => {
-                resolve('Data fetched successfully');
-            }, 2000);
-        });
-        console.log(result);
-    } catch (error) {
-    console.error(`Error: ${error}`);
-    }
-}
 
-fetchUserData();
 fetchUserData(''https://jsonplaceholder.typicode.com/users', {
     method: 'POST',
     headers: {
