@@ -1,43 +1,22 @@
-
-fetchUserData(''https://jsonplaceholder.typicode.com/users', {
-    method: 'POST',
-    headers: {
-        'Authorization': 'Bearer <your_token>',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        name: 'New Data',
-        description: 'Important information'
-    }) // it should be changed to string
-})
-.then(response => {
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
-    }
-    return response.json(); 
-})
-.then(data => {
-    console.log('Success:', data);
-})
-.catch(error => {
-    console.error('Error:', error);
-});
-Now try to write the above in async / await, before you see the implementation below.
+const apiDataElement = document.getElementById('api-data');
 
 async function fetchUserData() {
-  try {
-    const response = await fetch('https://api.example.com/data');
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users'); // Replace with your API endpoint
+        const data = await response.json();
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
+        // Display the user data in the HTML
+        apiDataElement.innerHTML = '<h2>User Data:</h2>';
+        data.forEach(user => {
+            apiDataElement.innerHTML += `<p><strong>Username:</strong> ${user.username}</p>`;
+            apiDataElement.innerHTML += `<p><strong>Email:</strong> ${user.email}</p>`;
+            apiDataElement.innerHTML += `<p><strong>Created At:</strong> ${user.created_at}</p>`;
+            apiDataElement.innerHTML += '<hr>';
+        });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        apiDataElement.innerHTML = 'An error occurred while fetching user data.';
     }
-
-    const data = await response.json(); 
-    console.log('Success:', data); 
-  } catch (error) {
-    console.error('Error:', error);
-  }
 }
 
 fetchUserData();
-document.getElementById'api-data'
