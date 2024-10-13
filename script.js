@@ -1,96 +1,47 @@
 DOMContentLoaded
-const form = document.getElementById('registrationForm');
+const registrationForm = document.getElementById('registration-form');
+const usernameInput = document.getElementById('username');
+const emailInput = document.getElementById('email');
+const   
+ passwordInput = document.getElementById('password');   
 
-    form.addEventListener('Register', function(event) {
-      event.preventDefault(); // Prevent form submission
+const formFeedback = document.getElementById('form-feedback');
 
-      // Validate username
-      const usernameInput = document.getElementById('username');
-      const usernameError = document.getElementById('usernameError');
-      if (usernameInput.value.length < 3) {
-        usernameError.textContent = 'Username must be at least 3 characters long.';
+registrationForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+
+    const username = usernameInput.value;   
+
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    // Basic validation (you can add more complex validation as needed)
+    if (username === '' || email === '' || password === '') {
+        formFeedback.textContent = 'Please fill in all fields.';
         return;
-      } else {
-        usernameError.textContent = '';
-      }
+    }
 
-      // Validate email
-      const emailInput = document.getElementById('email');
-      const emailError = document.getElementById('emailError');
-      if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(emailInput.value)) {
-        emailError.textContent = 'Please enter a valid email address.';
+    // Check if the email is valid (you can use a more robust email validation library)
+    if (!isValidEmail(email)) {
+        formFeedback.textContent = 'Invalid email address.';
         return;
-      } else {
-        emailError.textContent = '';
-      }
+    }
 
-      // Validate password
-      const passwordInput = document.getElementById('password');
-      const passwordError = document.getElementById('passwordError');
-      if (passwordInput.value.length < 6) {
-        passwordError.textContent = 'Password must be at least 6 characters long.';
-        return;
-      } else {
-        passwordError.textContent = '';
-      }
+    // Here you can implement additional validation or send the form data to a server for processing
+    // For demonstration purposes, we'll just log the data to the console
+    console.log('Registration data:', { username, email, password });
 
-      // If all validations pass, submit the form
-      form.Register();
-    });
-const form = document.getElementById('registrationForm');
- const usernameInput = document.getElementById('username');
- const emailInput = document.getElementById('email');
- const passwordInput = document.getElementById('password');
+    // Clear the form fields
+    usernameInput.value = '';
+    emailInput.value = '';
+    passwordInput.value = '';
 
-    form.addEventListener('Register', (event) =>{
-      event.preventDefault(); // Prevent form submission
-         checkInputs();
-    });
-   function checkInputs() {
-       const usernameValue = username.value.trim();
-       const emailValue = email.value.trim();
-       const passwordValue = password.value.trim();
-       if(usernameValue < 3) {
-           setErrorFor(username,'username cant less than 3');
-      }else {
-           setSuccessFor(username);
-       }
-        if(emailValue === '') {
-            setErrorFor(email,'Email can't less than be blank')
-   }else if(isEmail(emailValue)) {
-            setErrorFor(email,'Email isn't valid')
-        }
-        else{
-            setSuccessFor(email);
-       }
-       if(passwordValue < 8) {
-            setErrorFor(password,'password can't less than 8')
-   }else {
-           setSuccessFor(password);
-       }
-   }
- function setErrorFor(input, message) {
-     const formControl = inputparentElement;
-     const small = formControl.querySelector('small');
-     small.innerText = message;
-     formControl.className = 'form-Control error';
- }
- function isEmail(email) {
-     return !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/..test(email);
- }
-const form = document.getElementById('form-feedback');
+    // Display a success message
+    formFeedback.textContent = 'Registration successful!';
+});
 
-    feedbackDiv.addEventListener('Register', function(event) {
-      event.preventDefault(); // Prevent form submission
-
-      // Validate username
-      const usernameInput = document.getElementById('username');
-      if (register is valid) {
-          remains true
-        feedbackDiv.textContent = 'Registration successful!';
-          feedbackDiv.style ='color:#28a745;'
-        return;
-      } else {
-        feedbackDivError.textContent = '';
-          feedbackDiv.style ='color:#dc3545;';
-      }
+function isValidEmail(email) {
+    // A simple email validation pattern
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
