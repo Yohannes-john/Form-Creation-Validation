@@ -66,3 +66,31 @@ async function fetchData() {
 }
 
 fetchData();
+const dataContainer = document.getElementById('api-data');
+
+async function fetchData() {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users'); // Replace with your API endpoint
+        const data = await response.json();
+
+        // Create a new unordered list to display user data
+        const userList = document.createElement('ul');
+
+        // Append each user's information to the list
+        data.forEach(user => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<strong>Username:</strong> ${user.username}<br>
+                                  <strong>Email:</strong> ${user.email}<br>
+                                  <strong>Created At:</strong> ${user.created_at}`;
+            userList.appendChild(listItem);
+        });
+
+        // Append the user list to the data container
+        dataContainer.appendChild(userList);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        dataContainer.innerHTML = 'An error occurred while fetching user data.';
+    }
+}
+
+fetchData();
