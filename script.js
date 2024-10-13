@@ -45,3 +45,64 @@ function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
+const registrationForm = document.getElementById('registration-form');
+const usernameInput = document.getElementById('username');
+const emailInput = document.getElementById('email');
+const   
+ passwordInput = document.getElementById('password');   
+
+const formFeedback = document.getElementById('form-feedback');
+
+registrationForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+
+    const username = usernameInput.value;   
+
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    let isValid = true; // Assume validity initially
+    let messages = []; // Array to store validation messages
+
+    // Basic validation
+    if (username === '' || email === '' || password === '') {
+        isValid = false;
+        messages.push('Please fill in all fields.');
+    }
+
+    // Check email validity
+    if (!isValidEmail(email)) {
+        isValid = false;
+        messages.push('Invalid email address.');
+    }
+
+    // Check password length (you can add more complex password validation)
+    if (password.length < 8) {
+        isValid = false;
+        messages.push('Password must be at least 8 characters long.');
+    }
+
+    if (isValid) {
+        // Registration successful (you can implement form submission logic here)
+        formFeedback.textContent = 'Registration successful!';
+        formFeedback.style.color = '#28a745';
+        formFeedback.style.display = 'block'; // Make feedback visible
+
+        // Clear the form fields (optional)
+        usernameInput.value = '';
+        emailInput.value = '';
+        passwordInput.value = '';
+    } else {
+        // Display validation errors
+        const errorMessage = messages.join('<br>'); // Join messages with <br>
+        formFeedback.innerHTML = errorMessage; // Use innerHTML for proper formatting
+        formFeedback.style.color = '#dc3545';
+        formFeedback.style.display = 'block'; // Make feedback visible
+    }
+});
+
+function isValidEmail(email) {
+    // A simple email validation pattern
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
