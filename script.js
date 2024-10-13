@@ -192,3 +192,51 @@ function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
+const registrationForm = document.getElementById('registration-form');
+const usernameInput = document.getElementById('username');
+const emailInput = document.getElementById('email');
+const   
+ passwordInput = document.getElementById('password');   
+
+const feedbackDiv = document.getElementById('form-feedback'); // Access the feedback div
+
+registrationForm.addEventListener('submit', (event) => {
+  event.preventDefault(); // Prevent default form submission
+
+  const username = usernameInput.value.trim();
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
+
+  // Basic validation (you can add more complex validation as needed)
+  if (username === '' || email === '' || password === '') {
+    feedbackDiv.innerHTML = 'Please fill in all fields.';
+    feedbackDiv.style.color = 'red'; // Set error message color
+    return;
+  }
+
+  // Check if the email is valid (you can use a more robust email validation library)
+  if (!isValidEmail(email)) {
+    feedbackDiv.innerHTML = 'Invalid email address.';
+    feedbackDiv.style.color = 'red'; // Set error message color
+    return;
+  }
+
+  // Here you can implement additional validation or send the form data to a server for processing
+  // For demonstration purposes, we'll just log the data to the console
+  console.log('Registration data:', { username, email, password });
+
+  // Clear the form fields
+  usernameInput.value = '';
+  emailInput.value = '';
+  passwordInput.value = '';
+
+  // Display a success message
+  feedbackDiv.innerHTML = 'Registration successful!';
+  feedbackDiv.style.color = 'green'; // Set success message color
+});
+
+function isValidEmail(email) {
+  // A simple email validation pattern
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
